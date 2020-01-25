@@ -1,5 +1,5 @@
 DataDog
-* Informal SDLC, no groundrules i.e. specific languages or frameworks devs must stick with.
+* Informal SDLC, no ground rules i.e. specific languages or frameworks devs must stick with.
 * Lots of dev work, lots of things to keep track of.
 * Focus on ProdSecOps - a central place to monitor specific source-code files in Github for changes i.e.
     * Anything related to auth

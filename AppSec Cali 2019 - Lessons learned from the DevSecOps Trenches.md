@@ -1,3 +1,5 @@
+Video: https://www.youtube.com/watch?v=QbKTEOgywwM
+
 DataDog
 * Informal SDLC, no ground rules i.e. specific languages or frameworks devs must stick with.
 * Lots of dev work, lots of things to keep track of.

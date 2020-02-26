@@ -1,0 +1,39 @@
+# BSidesSF 2019 - DevSecOps State of the Union
+
+Minimizing Developer Friction
+* Integrate as much as you can in existing dev workflows (streamlining as much as possible)
+* If pushing results to devs, have no false positives
+* Paved road concept - how can be make the secure default very simple, very easy to use.
+  * E.g. DocuSign wrote a secure wrapper library for XML parsing. Prevents XXE, gives devs nice telemetry e.g. performance metrics etc.
+
+Self-Service Security - Threat Modelling
+* No time to threat model every feature release / new epic.
+* Questionnaire self-service:
+  * Slack - GoSDL (a questionnaire devs can fill out and provide response of things they can consider)
+  * Netflix - Zoltar (security guidance questionnaire
+  * Google - Vendor security questionnaire (Github: google/vsaq)
+* Other easy/simple approaches:
+  * Riot Games - Devs ask themselves for each new feature "How can a malicious user intentionally abuse this functionality? How can we prevent that?"
+
+Self-Service Security - Slack IR Bot
+* *Core Idea*: when a fishy event occurs, prompting originating user with Slack bot question + 2FA. Only escalate if user did not initiate action.
+* *Motivation*: can we push some validation to devs to free up security engineering tine?
+* Slack: Distributed Security Alerting
+* Dropbox: Securitybot: Open Sourcing Automated Security at Scale
+* Pinterest: Empowering the Employee: Incident Response with a Security Bot
+
+Continuous Visibility:
+* What are devs working on?
+  * Scraping Slack, Jira, Trello for security tags where they mention key terms such as "crypto" etc/
+* Risk dashboard
+  * What is the current state of our different services?
+  * What components are used by this service? Do we have known vulns in those components?
+  * Do we have good test coverage?
+  * Is the service using our secure-by-default library?
+  * Is the service edge-facing / public-facing?
+  * How many EC2 instances are associated with this service?
+
+Continuous Visibility - AppSec Pipeline
+* *Core Idea*: continuously scan new code with static and dynamic tools
+* 
+

@@ -91,8 +91,8 @@ Talks on Eliminating Bug Classes
   * ShiftLeft - Ocular: look for code patterns, data flow analysis interactively via. console.
 
 Case Study: Eliminating Bug Classes
-* Problem: "I feel like we're not getting much value out of <insert SAST tool>, can you review how we're doing things and see what makes sense for us?"
-* Scoping the problem:
+* 1. Problem: "I feel like we're not getting much value out of <insert SAST tool>, can you review how we're doing things and see what makes sense for us?"
+* 2. Scoping the problem:
   * _Initial Request_: "Help us get more value from static analysis"
   * _Define Problem_: What is "more value"?
     * Integrating the tool, tuning, AppSec engineer time spent triaging
@@ -104,3 +104,40 @@ Case Study: Eliminating Bug Classes
     * SAST, custom static analysis checks / linting
     * Internal pentesting
     * Bug bounty
+* 3. What we did
+   * _Intuition_: prior bugs are indicative of future ones
+   * _Core Idea_: review all prior known bugs for the last 1-2 years => suitable for SAST?
+   * _Methodology_:
+     * Pre-project preparation - information gathering
+       * Prior bugs are grouped by category => link to PR fixing it, Jira issue, misc related info
+       * We needed access to code repo (Github Enterprise), Jira, SAST tool.
+     * Core Project Work
+       * Review prior bugs - ask if we could detect these prior bugs with grep, AST matching/linting or intra/interprocedural data flow analysis?
+       * What mitigations and checks are currently in place? (Secure-by-default libs, custom libs, custom linting)
+       * Any existing analysis primitives for languages and frameworks in use / how hard is it to build your own? I.e. if the static analysis tool isn't useful, how easy would it be to build your own?
+     * Output: a report describing:
+       * Overview of static anlaysis theory, best practices in using and tuning SAST from past experience.
+       * For every vulnerability class, does it make sense to use SAST, build custom tooling, develop a secure library/framework or something else? (Keeping in mind current technology being used in the company, what does the SDLC look like, future product directions etc.)
+ * 4. Results
+    * When the data backs up your intuition:
+      * Introduction of secure wrapper libraries killed vulnerability classes (e.g. SQLi)
+      * ... as does use of modern frameworks (e.g. React killing XSS) Anytime there was XSS, it was in the old cold.
+    * Some surprises:
+      * "For <vuln class>, consider doing nothing"
+        * Infrequent/consistently low severity issues, or ones mitigated by upcoming tech changes.
+      * Secure wrapper library + custom linting to enforce use was almost always the recommended approach.
+        * Most vulns were either not something SAST tools were designed to find (e.g. access control) or would require extensive custom rule writing.
+        * Data flow analysis, the selling point of most SAST tools, was overkill or ill suited in most cases.
+   * 5. How to do this at your company?
+     * Track your vulns
+       * Group by code base and vuln classes (access control, XSS, SQLi, open redirect...)
+       * The PR that fixes them.
+       * Source - pentesting, bug bounty, internal testing...
+         * Is one of these sources finding most of your high severity vulns?
+         * What's the $ and AppSec person-time involved?
+       * Any useful contextual info e.g. discussion of severity, mitigating factors, why it occurred etc.
+     * Review the vulns - what method can discover them at scale?
+       * Goal: minimise cost (bug bounty, pentesting, tool licensing) and AppSec time (finding manually, triaging custom or commercial FP's)
+       * What's worked well for your organisation or team in the past that you can leverage? Any success stories for other vuln classes that you can leverage?
+
+Blue Team Truism: Wrong?

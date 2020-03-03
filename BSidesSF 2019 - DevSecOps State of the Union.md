@@ -141,3 +141,12 @@ Case Study: Eliminating Bug Classes
        * What's worked well for your organisation or team in the past that you can leverage? Any success stories for other vuln classes that you can leverage?
 
 Blue Team Truism: Wrong?
+* Historically, security has been based on the flawed assumption that we can find all the bugs => but bugs are always going to exist!
+* Tools can't find every bug. There will always be false negatives e.g. access control, business logic flaws, flows too complex etc.
+* Trying to find every bug will result in false positives.
+
+## The next trend in security?
+
+## Secure defaults + light-weight adoption checks to make sure we're using them + logging and monitoring for visibility.
+
+## Detecting (lack of) use of secure defaults is MUCH easier than trying to find bugs.

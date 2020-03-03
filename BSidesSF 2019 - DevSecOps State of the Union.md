@@ -147,6 +147,5 @@ Blue Team Truism: Wrong?
 
 ## The next trend in security?
 
-## Secure defaults + light-weight adoption checks to make sure we're using them + logging and monitoring for visibility.
+### Secure defaults + light-weight adoption checks to make sure we're using them + logging and monitoring for visibility.
 
-## Detecting (lack of) use of secure defaults is MUCH easier than trying to find bugs.
